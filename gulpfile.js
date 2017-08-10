@@ -10,7 +10,9 @@ gulp.task('sass', () => {
         .src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/scss/*.scss'])
         .pipe(sass())
         .pipe(cssnano())
-        .pipe(rename({ suffix: '.min' }))
+        .pipe(rename({
+            suffix: '.min'
+        }))
         .pipe(gulp.dest('src/css'))
         .pipe(browserSync.stream());
 });
@@ -31,12 +33,11 @@ gulp.task('js', () => {
 gulp.task('serve', ['sass'], () => {
     browserSync.init({
         server: './src',
-        browser: 'google chrome'
+        browser: 'chrome'
     });
 
     gulp.watch(
-        ['node_modules/bootstrap/scss/bootstrap.scss', 'src/scss/*.scss'],
-        ['sass']
+        ['node_modules/bootstrap/scss/bootstrap.scss', 'src/scss/*.scss'], ['sass']
     );
     gulp.watch('src/*.html').on('change', browserSync.reload);
 });
