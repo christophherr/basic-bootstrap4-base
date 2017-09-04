@@ -10,9 +10,11 @@ gulp.task('sass', () => {
         .src(['node_modules/bootstrap/scss/bootstrap.scss', 'src/scss/*.scss'])
         .pipe(sass())
         .pipe(cssnano())
-        .pipe(rename({
-            suffix: '.min'
-        }))
+        .pipe(
+            rename({
+                suffix: '.min'
+            })
+        )
         .pipe(gulp.dest('src/css'))
         .pipe(browserSync.stream());
 });
@@ -23,7 +25,7 @@ gulp.task('js', () => {
         .src([
             'node_modules/bootstrap/dist/js/bootstrap.min.js',
             'node_modules/jquery/dist/jquery.min.js',
-            'node_modules/tether/dist/js/tether.min.js'
+            'node_modules/popper.js/dist/umd/popper.min.js'
         ])
         .pipe(gulp.dest('src/js'))
         .pipe(browserSync.stream());
